@@ -1,25 +1,26 @@
-const express = require("express");
-const cors = require("cors");
+import logo from './logo.svg';
+import './App.css';
+import { useAuth } from 'app-launcher-auth';
 
-const userRouter = require("./routers/user.router");
-const nftRouter = require("./routers/nft.router");
-const path = require("path");
+function App() {
+  const { isLogged, user, loginPopup, loading, logout } = useAuth();
 
-const port = process.env.PORT;
-require("./db/db");
+  if (loading) {
+    return <span>Loading...</span>
+  }
 
-const app = express();
-app.use(cors());
-app.use(express.json());
-app.use(express.static(path.join(__dirname, "build")));
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <span style={{ marginBottom: 12 }}>isLogged: {`${isLogged}`}</span>
+        <div style={{ overflowWrap: 'anywhere', marginBottom: 12 }}>User: {JSON.stringify(user)}</div>
 
-app.use(userRouter);
-app.use(nftRouter);
+        {!isLogged && <button onClick={loginPopup}>Login</button>}
+        {isLogged && <button onClick={logout}>Logout</button>}
+      </header>
+    </div>
+  );
+}
 
-app.use("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+export default App;
