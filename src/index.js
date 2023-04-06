@@ -17,11 +17,12 @@ root.render(
     config={{
       authority:
         "https://cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_7wzWV6yyL",
-      client_id: "6qudor4hlc22kqlqsjc8ct2cfg",
-      client_secret: "4i64703bh2eo3rs5tobfkahkkmkf44su7ogvam2fr65hdk95605",
+      client_id: "52paph6bh6ute7fmhqldvanebe",
+      client_secret: "5mgnc3fkuvh8rfjn8itlf6u8fa75ds8ihcq7dier0s13f2bq7kf",
       redirect_uri: "http://localhost:3001/login/callback",
       scope: "openid email profile aws.cognito.signin.user.admin",
       response_type: "code",
+      launchUrl: 'http://localhost:3000',
       logoutRedirectLink:
         "https://betterhome-mvp.auth.ap-southeast-1.amazoncognito.com/logout?client_id=6qudor4hlc22kqlqsjc8ct2cfg&logout_uri=http://localhost:3001/logout",
       apiGetUserUrl: `https://betterhome-mvp.twenty-tech.com/api/user/get-user-info`,
